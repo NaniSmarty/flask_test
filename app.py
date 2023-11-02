@@ -14,7 +14,7 @@ bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 # client = MongoClient('mongodb://Aryan:root%40123@192.168.10.134:27017/?authMechanism=DEFAULT')
 # client = MongoClient("mongodb://<narayanraju>:<narayanraju220797>@0.0.0.0/<test>")
-client = MongoClient("mongodb+srv://narayanraju:<narayanraju220797>@cluster0.fiudarr.mongodb.net/")
+client = MongoClient("mongodb+srv://user:User123@flasktest.qkm2nz9.mongodb.net/")
 
 
 def get_next_sequence(collection, name):
@@ -26,8 +26,13 @@ def get_next_sequence(collection, name):
     )
     return counter['sequence_value']
 
+@app.route('/', methods=['GET'])
+def register():
+    return jsonify({'message': 'Welcome to Test Application'}), 200
+
 @app.route('/register', methods=['POST'])
 def register():
+    print(request)
     data = request.get_json()
     firstname = data.get('firstname')
     lastname = data.get('lastname')
